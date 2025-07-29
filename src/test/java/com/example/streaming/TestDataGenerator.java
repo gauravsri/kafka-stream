@@ -36,8 +36,16 @@ public class TestDataGenerator {
     
     public static List<Message> createTestMessages(int count) {
         List<Message> messages = new ArrayList<>();
+        long baseTime = System.currentTimeMillis();
+        
         for (int i = 0; i < count; i++) {
-            messages.add(createTestMessage());
+            Message message = Message.newBuilder()
+                    .setMessageType(getRandomMessageType())
+                    .setDate(LocalDate.now().format(DATE_FORMATTER))
+                    .setMessageId(UUID.randomUUID().toString())
+                    .setCreationTime(baseTime + i) // Ensure unique timestamps
+                    .build();
+            messages.add(message);
         }
         return messages;
     }
@@ -45,9 +53,16 @@ public class TestDataGenerator {
     public static List<Message> createTestMessagesWithTypes(String... messageTypes) {
         List<Message> messages = new ArrayList<>();
         String date = LocalDate.now().format(DATE_FORMATTER);
+        long baseTime = System.currentTimeMillis();
         
-        for (String messageType : messageTypes) {
-            messages.add(createTestMessage(messageType, date));
+        for (int i = 0; i < messageTypes.length; i++) {
+            Message message = Message.newBuilder()
+                    .setMessageType(messageTypes[i])
+                    .setDate(date)
+                    .setMessageId(UUID.randomUUID().toString())
+                    .setCreationTime(baseTime + i) // Ensure unique timestamps
+                    .build();
+            messages.add(message);
         }
         return messages;
     }
@@ -55,9 +70,16 @@ public class TestDataGenerator {
     public static List<Message> createTestMessagesWithDates(String... dates) {
         List<Message> messages = new ArrayList<>();
         String messageType = getRandomMessageType();
+        long baseTime = System.currentTimeMillis();
         
-        for (String date : dates) {
-            messages.add(createTestMessage(messageType, date));
+        for (int i = 0; i < dates.length; i++) {
+            Message message = Message.newBuilder()
+                    .setMessageType(messageType)
+                    .setDate(dates[i])
+                    .setMessageId(UUID.randomUUID().toString())
+                    .setCreationTime(baseTime + i) // Ensure unique timestamps
+                    .build();
+            messages.add(message);
         }
         return messages;
     }

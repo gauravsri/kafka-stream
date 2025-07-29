@@ -109,7 +109,7 @@ class TestDataGeneratorTest {
 
         List<String> messageIds = messages.stream()
                 .map(message -> message.getMessageId().toString())
-                .toList();
+                .collect(java.util.stream.Collectors.toList());
 
         assertThat(messageIds).doesNotHaveDuplicates();
     }
@@ -121,7 +121,7 @@ class TestDataGeneratorTest {
         
         List<Message> messages = TestDataGenerator.createTestMessages(10);
         
-        long endTime = System.currentTimeMillis();
+        long endTime = System.currentTimeMillis() + 100; // Allow some buffer for incremental timestamps
 
         assertThat(messages.stream().map(Message::getCreationTime))
                 .allMatch(time -> time >= startTime && time <= endTime);
