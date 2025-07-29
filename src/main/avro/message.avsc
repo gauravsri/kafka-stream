@@ -1,0 +1,11 @@
+{
+  "type": "record",
+  "name": "Message",
+  "namespace": "com.example.avro",
+  "fields": [
+    { "name": "message_type",  "type": "string" },
+    { "name": "date",          "type": "string" },
+    { "name": "message_id",    "type": "string" },
+    { "name": "creation_time", "type": "long" }
+  ]
+}

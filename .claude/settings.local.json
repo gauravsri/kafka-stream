@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(chmod:*)",
+      "Bash(mvn:*)",
+      "Bash(ls:*)",
+      "Bash(./validate.sh)",
+      "Bash(./compact.sh:*)"
+    ],
+    "deny": []
+  }
+}
